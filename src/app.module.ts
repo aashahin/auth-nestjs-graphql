@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
-import { ConfigModule} from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver } from '@nestjs/apollo';
 import { join } from 'path';
@@ -13,15 +13,15 @@ import { join } from 'path';
     AuthModule,
     UserModule,
     GraphQLModule.forRootAsync({
-      imports: [ConfigModule,AppModule],
+      imports: [ConfigModule, AppModule],
       driver: ApolloDriver,
-      useFactory: async ()=> {
+      useFactory: async () => {
         return {
           playground: true,
           autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
           sortSchema: true,
         };
-      }
+      },
     }),
     ConfigModule.forRoot({
       isGlobal: true,

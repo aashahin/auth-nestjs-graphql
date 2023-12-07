@@ -6,16 +6,16 @@ export class User {
   id?: number;
 
   @Field()
-  fullName: string;
+  fullname: string;
 
   @Field()
   email?: string;
 
-  @Field({ nullable: true })
-  avatarUrl?: string;
+  @Field()
+  password?: string;
 
   @Field({ nullable: true })
-  password?: string;
+  avatarUrl?: string;
 
   @Field({ nullable: true })
   createdAt: Date;
