@@ -10,8 +10,6 @@ import { join } from 'path';
 
 @Module({
   imports: [
-    AuthModule,
-    UserModule,
     GraphQLModule.forRootAsync({
       imports: [ConfigModule, AppModule],
       driver: ApolloDriver,
@@ -25,8 +23,9 @@ import { join } from 'path';
     }),
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: '.env',
     }),
+    AuthModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],

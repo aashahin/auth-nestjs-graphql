@@ -13,10 +13,7 @@ export class AuthService {
     private readonly jwtService: JwtService,
     private readonly prisma: PrismaService,
     private readonly configService: ConfigService,
-    private readonly expirationToken: number,
-  ) {
-    this.expirationToken = Math.floor(Date.now() / 1000) + 15 * 60; // 15 minutes
-  }
+  ) {}
 
   async refreshToken(req: Request, res: Response) {
     const refreshToken = req.cookies['refresh_token'];
@@ -46,7 +43,7 @@ export class AuthService {
     const accessToken = this.jwtService.sign(
       {
         ...payload,
-        exp: this.expirationToken,
+        exp: Math.floor(Date.now() / 1000) + 15 * 60,
       },
       {
         secret: this.configService.get<string>('SECRET_ACCESS_TOKEN'),
